@@ -1,0 +1,30 @@
+
+*********************************************************************************
+./LTE-Scanner.sh		==> Scans Italian LTE frequencies for cells
+
+captureRawData_RTL.sh		==> Acquires raw data (RTL-SDR)
+./captureRawData_RTL.sh -T 5 -f "796e6 806e6 816e6" -g 40 -p 65 -s 1920000 -n 19200000 -F test
+
+captureRawData_HACKRF.sh	==> Acquires raw data (HackRF)
+./captureRawData_HACKRF.sh -T 5 -f "796e6 806e6 816e6" -s 15360000 -b 10000000 -n 153600000 -F test
+
+importEvrytania_RTL.sh		==> Imports raw data through Evrytania (RTL-SDR)
+./importEverytania_RTL.sh -f ./RTL_DATA
+
+importEvrytania_HACKRF.sh	==> Imports raw data through Evrytania (HackRF)
+ConverterHACKRF.py		==> Converts int8 data (HackRF) into uint8 data (RTL-SDR)
+./importEverytania_HACKRF.sh -f ./HACKRF_DATA
+
+importOpenLTE_HACKRF.sh		==> Imports raw data through OpenLTE 
+./importOpenLTE_HACKRF.sh -f ./HACKRF_DATA -s 15.36
+
+ParameterGenerator.py		==> MATLAB parameters generator
+*********************************************************************************
+
+*********************************************************************************
+sudo hackrf_transfer -s 1920000 -b 2500000 -n 8000000 -f 1835e6 -l 40 -g 30 -r test
+cat test | tail -c +301 > test_
+LTE-Tracker -f $frequency -s -l ../../$source_path
+
+sudo hackrf_transfer -s 15360000 -b 10000000 -n 76800000 -f 1835e6 -l 40 -g 30 -r test
+***********************************************************************************
