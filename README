@@ -1,7 +1,5 @@
 This is a modified version of OpenLTE able to extract Channel State Information (CSI) from LTE signals. By Peco602 (giovanni1.pecoraro@protonmail.com).
 
-------------------------------
-
 *****************************************************************************************************
 
 This directory contains the openLTE source code.  For support, please
